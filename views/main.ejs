@@ -1,0 +1,47 @@
+<%-include('./partials/header')%>
+<section class="section my-4">
+    <div class="container text-center">
+        <div class="title py-5">
+            <h1>Node File Uploader</h1>
+            <p class="subtitle">Upload Images to the <strong>Server</strong></p>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-5">
+                <form action="/uploadmultiple" enctype="multipart/form-data" method="post">
+                    <div class="row">
+                        <div class="col-8">
+                            <input class="form-control" type="file" name="images" id="formFile" multiple>
+                        </div>
+                        <div class="col-2">
+                            <input class="btn btn-warning" type="submit" value="Upload Images">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <section class="mt-5  ">
+            <div class="row ">
+
+                <% images.forEach(img=>{%>
+                <div class="col col-lg-4 d-flex justify-content-center">
+                    <div class="card shadow my-2" style="width: 18rem;">
+                        <img src="data:<%=img.contentType%>;base64,<%=img.imageBase64%>" class="card-img-top img-fluid"
+                            alt="">
+                        <div class="card-body">
+                            <h5 class="card-title font-poppins"><%=img.filename%></h5>
+                            <p class="card-text font-size-09">We have to adapt to the rapid pace of cat development. As kittens turn into teenage cats and teenage cats into adults, interest flares up and then fades away.</p>
+                            <a href="https://www.wayofcats.com/blog/" class="btn btn-info font-size-09 text-light" target="_blank">Czytaj więcej</a>
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+
+            </div>
+        </section>
+    </div>
+</section>
+
+
+
+<%-include('./partials/footer')%>
